@@ -7,7 +7,7 @@ import MapPage from './pages/MapPage';
 function App() {
   return (
     <Routes>
-      <Route path="/main" element={<MainPage/>}/>
+      <Route path="/" element={<MainPage/>}/>
       <Route path="/login" element={<LoginPage/>}/>
       <Route path="/people" element={<PeoplePage/>}/>
       <Route path="/map" element={<MapPage/>}/>

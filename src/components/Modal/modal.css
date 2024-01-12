@@ -17,6 +17,8 @@
     border-radius: 12px;
     background-color: aliceblue;
     width: 50vw;
+    display: flex;
+    justify-content: center;
 }
 .modal.active{
     opacity: 1;

@@ -4,9 +4,10 @@ import usePeopleStore from '../store/peopleStore'
 import axios from 'axios';
 import Footer from '../components/footer';
 import Modal from '../components/Modal/Modal';
+import useReportStore from '../store/reportStore';
 
 function PeoplePage(props) {
-    const rows = 32;
+    const rows = 15;
     const [modalActive, setModalActive] = useState(false)
     let {people, setPeople} = usePeopleStore();
     let [name, setName] = useState('');
@@ -14,6 +15,8 @@ function PeoplePage(props) {
     let [role, setRole] = useState('');
     let [page, setPage] = useState(1);
     let [pageCount, setPageCount] = useState(1);
+    let {reports, setReports} = useReportStore();
+    
     useEffect(()=>{
         getPeople();
         getPageCount(rows);
@@ -79,6 +82,7 @@ function PeoplePage(props) {
         })
     }
     function showReports(pid){
+        getReports(pid)
         setModalActive(true)
     }
     return (
@@ -132,10 +136,44 @@ function PeoplePage(props) {
             </div>
             <Footer/>
             <Modal active={modalActive} setActive={setModalActive}>
-                
+                <div className="people_table">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>date</th>
+                            <th>description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+  
+                                reports.map((v) => (
+                                    <tr key={v.id}>
+                                        <td>{v.id}</td>
+                                        <td>{v.date}</td>
+                                        <td>{v.description}</td>
+                                    </tr>
+                                ))
+
+                        }
+                        </tbody>
+                    </table>
+                </div>
             </Modal>       
         </div>
     );
+    function getReports(pid){
+        axios.get('http://localhost:8010/proxy/api/report/getByPersonId', {params:{personId: pid}})
+        .then(resp => {
+            setReports(resp.data)
+            // console.log(resp.data)
+            console.log(reports)
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+    }
 }
 
 export default PeoplePage;

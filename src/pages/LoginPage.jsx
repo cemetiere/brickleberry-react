@@ -12,7 +12,7 @@ const LoginPage = () => {
 
         if (userName.length!=0){
             console.log(userName.length)
-            navigate("/main")
+            navigate("/")
         }
     }
     return (
