@@ -6,7 +6,7 @@ import useUserStore from '../store/userStore';
 
 
 const LoginPage = () => {
-    const {userName, setName} = useUserStore();
+    const {userName, userRole, setName, setRole} = useUserStore();
     const navigate = useNavigate();
     function login(){
 
@@ -19,7 +19,14 @@ const LoginPage = () => {
         <div id='LoginPage'>
             <span>Hello, Brickleberry National Park manager! What is your name?</span>
             <input maxLength={7} onChange={(e)=>setName(e.target.value)} type='text' value={userName}/>
+            <select onChange={e => setRole(e.target.value)}>
+                        <option value={'Управляющий'}>Управляющий</option>
+                        <option value={'Инспектор'}>Инспектор</option>
+                        <option value={'Научный отдел'}>Научный отдел</option>
+                        <option value={'Хозотдел'}>Хозотдел</option>
+                </select>
             <button onClick={login}>Log in</button>
+
         </div>
     );
 };

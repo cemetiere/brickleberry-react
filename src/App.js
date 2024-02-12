@@ -3,6 +3,8 @@ import LoginPage from './pages/LoginPage';
 import MainPage from './pages/MainPage';
 import PeoplePage from './pages/PeoplePage';
 import MapPage from './pages/MapPage';
+import AnimalPage from './pages/AnimalPage';
+import WarehousePage from './pages/WarehousePage';
 
 function App() {
   return (
@@ -11,6 +13,8 @@ function App() {
       <Route path="/login" element={<LoginPage/>}/>
       <Route path="/people" element={<PeoplePage/>}/>
       <Route path="/map" element={<MapPage/>}/>
+      <Route path="/animals" element={<AnimalPage/>}/>
+      <Route path="/warehouse" element={<WarehousePage/>}/>
     </Routes>
   );
 }

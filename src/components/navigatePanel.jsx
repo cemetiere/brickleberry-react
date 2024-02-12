@@ -9,8 +9,8 @@ function NavigatePanel(props) {
         <div id='NavigatePanel'>
             <div className='navComponent' onClick={()=>navigate("/people")}><span className='navText'>People</span></div>
             <div className='navComponent' onClick={()=>navigate("/map")}><span className='navText'>Map</span></div>
-            <div className='navComponent'><span className='navText'>Animals</span></div>
-            <div className='navComponent'><span className='navText'>Warehouse</span></div>
+            <div className='navComponent' onClick={()=>navigate("/animals")}><span className='navText'>Animals</span></div>
+            <div className='navComponent' onClick={()=>navigate("/warehouse")}><span className='navText'>Warehouse</span></div>
             <div className='navComponent' onClick={()=>navigate("/login")}><span className='navText'>Log out from {userName}</span></div>
         </div>
     );

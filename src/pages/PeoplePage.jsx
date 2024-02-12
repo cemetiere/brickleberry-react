@@ -5,9 +5,10 @@ import axios from 'axios';
 import Footer from '../components/footer';
 import Modal from '../components/Modal/Modal';
 import useReportStore from '../store/reportStore';
+import useUserStore from '../store/userStore';
 
 function PeoplePage(props) {
-    const rows = 15;
+    const rows = 30;
     const [modalActive, setModalActive] = useState(false)
     let {people, setPeople} = usePeopleStore();
     let [name, setName] = useState('');
@@ -16,6 +17,7 @@ function PeoplePage(props) {
     let [page, setPage] = useState(1);
     let [pageCount, setPageCount] = useState(1);
     let {reports, setReports} = useReportStore();
+    const {userRole} = useUserStore();
     
     useEffect(()=>{
         getPeople();
@@ -103,12 +105,13 @@ function PeoplePage(props) {
                         <tbody>
                         {
                             people.map((v) => (
-                                <tr key={v.id} onClick={()=>showReports(v.id)}>
-                                    <td>{v.id}</td>
-                                    <td>{v.name}</td>
-                                    <td>{v.surname}</td>
-                                    <td>{v.roles}</td>
-                                    <td className='deletePerson'><button onClick={()=>deletePerson(v.id)}>delete</button></td>
+                                <tr key={v.id} >
+                                    <td onClick={()=>showReports(v.id)}>{v.id}</td>
+                                    <td onClick={()=>showReports(v.id)}>{v.name}</td>
+                                    <td onClick={()=>showReports(v.id)}>{v.surname}</td>
+                                    <td onClick={()=>showReports(v.id)}>{v.roles}</td>
+                                    {userRole=="Управляющий"?<td className='deletePerson'><button onClick={()=>deletePerson(v.id)}>delete</button></td>:<></>}
+                                    
                                     
                                 </tr>
                             ))
@@ -121,8 +124,8 @@ function PeoplePage(props) {
                         <button onClick={()=>nextPage()}>&raquo;</button>
                     </div>
                 </div>
-                <div id='person-form'>
-                    <span className='navText' style={{paddingTop: 50 + "%"}}>Add a new person</span>
+                {userRole=="Управляющий"?<div className='ioPanel'>
+                    <span className='navText' >Add a new person</span>
                     <input type='text' placeholder='name' onChange={e => setName(e.target.value)}/>
                     <input type='text' placeholder='surname' onChange={e => setSurname(e.target.value)}/>
                     <select onChange={e => setRole(e.target.value)}>
@@ -132,7 +135,8 @@ function PeoplePage(props) {
                         <option value={'Хозотдел'}>Хозотдел</option>
                     </select>
                     <button onClick={addPerson}>add</button>
-                </div>
+                </div>:<></>}
+
             </div>
             <Footer/>
             <Modal active={modalActive} setActive={setModalActive}>

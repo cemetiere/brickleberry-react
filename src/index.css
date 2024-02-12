@@ -67,15 +67,17 @@ tr:hover{
 
   justify-items: center;
   position: relative;
-  height: 90vh;
+  min-height: 90vh;
   background-image: url('../public/logo.png');
   background-size: cover;
 }
-
+.main.map{
+  height: 90vh;
+}
 .people_table{
   width: 60%;
 }
-#person-form{
+.ioPanel{
   width: 20%;
   display: flex;
   flex-direction: column;
@@ -87,7 +89,10 @@ tr:hover{
   background-color: rgba(186, 186, 125, 0.596);
   height: 60vh;
   border-radius: 5%;
-
+  justify-content: center;
+}
+.ioPanel.animal{
+  align-items: center;
 }
 .deletePerson{
   display: flex;
@@ -114,7 +119,7 @@ tr:hover{
   -webkit-text-stroke: 1px black;
 }
 #map{
-  background-image: url('../public/map.gif');
+  background-image: url('../public/map.png');
   width: 65%;
   height: 100%;
   background-size:cover;
@@ -125,8 +130,8 @@ tr:hover{
   background-color: #005417;
   border: none;
   color: white;
-  width: 5%;
-  height: 10%;
+  width: 5vw;
+  height: 9.5vh;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -149,4 +154,90 @@ tr:hover{
 #territory3{
   margin-top: 33%;
   margin-left: 45%;
+}
+
+.warehouse{
+  background-color: #005416d5;
+  width: 40vh;
+  height: 70vh;
+  margin: 5%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #dddddd;
+  font-size: 5vh;
+}
+.warehouse:hover{
+  background-color: #63974ee3;
+}
+
+#back{
+  top:6vh;
+  left: 1vw;
+  position: fixed;
+  width: 7vw;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a{
+  display: block;
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  font-family: sans-serif;
+  text-decoration: none;
+  color: #333;
+  border: 2px solid #333;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: all .35s;
+}
+
+a span{
+  position: relative;
+  z-index: 2;
+}
+
+a:after{
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #ff003b;
+  transition: all .35s;
+}
+
+a:hover{
+  color: #fff;
+}
+
+a:hover:after{
+  width: 100%;
 }
